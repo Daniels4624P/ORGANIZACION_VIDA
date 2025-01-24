@@ -5,7 +5,13 @@ const URI = config.uri
 
 const sequelize = new Sequelize(URI, {
     dialect: 'postgres',
-    logging: true
+    logging: true,
+    dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // Evita rechazar certificados no autorizados (opcional)
+    },
+  },
 })
 
 setupModels(sequelize)
