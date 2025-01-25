@@ -4,7 +4,10 @@ const { models } = require('./../libs/sequelize')
 class CarpetasService {
     async obtenerTodasLasCarpetas() {
         const response = await models.Carpetas.findAll({
-            include: [{ association: 'tareas' }]
+            include: [{ association: 'tareas' }],
+            order: [
+                ['creado', 'ASC']
+            ]
         })
         return response
     }
